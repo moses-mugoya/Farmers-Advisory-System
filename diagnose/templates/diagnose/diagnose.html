@@ -1,0 +1,33 @@
+{% extends 'diagnose/base.html' %}
+
+{% block title %} Diagnose {% endblock %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1 style="font-size:18px;color:#2a65a1">Hello {{request.user.username}}, your diagnosis results will appear here <span class="glyphicon glyphicon-hand-down"></span></h1>
+            <hr>
+            {% for dis in display %}
+            <h3 style="color:#688667">{{dis.name}}</h3>
+            <img src="{{dis.image.url }}" class="img-responsive" height="200" width="200" style="margin-top:5px; margin-bottom:5px">
+            <h5>Medication</h5>
+            <p style="color:#4b4a6e">{{dis.medication}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h1>Please select the symptoms you want to diagnose with</h1>
+            <hr>
+            <form action="." method="post" style="margin-bottom:10px">
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="submit" value="Diagnose" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

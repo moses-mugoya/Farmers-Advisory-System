@@ -1,0 +1,20 @@
+{% extends 'diagnose/base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block body %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="col-md-12">
+        <h1>Dashboard</h1>
+        <hr>
+        <p>Welcome to your dashboard. You can <a href="{% url 'account:edit' %}">Edit your account</a> or <a
+                href="{% url 'password_change' %}">Change your password</a></p>
+        <h3 style="text-align:center"> My Messages </h3>
+        {% for message in messages %}
+        <p style="text-align:center">{{message.message}}</p>
+        {% empty %}
+        <p style="text-align:center">You don't have any messages</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

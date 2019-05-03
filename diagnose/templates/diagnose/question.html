@@ -1,0 +1,28 @@
+{% extends 'diagnose/base.html' %}
+
+{% block title %} Question {% endblock %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="container">
+        <div class="panel panel-default panelia col-md-12">
+            <div class="panel-body pan-bod">
+                <h2 style="color:#44a221; text-align:center">{{ message|safe }} </h2>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <h1>Ask Question using the following form</h1>
+    <hr>
+    <form method="post" action="." style="margin-bottom:10px">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" value="submit" class="btn btn-success">
+    </form>
+
+</div>
+{% endblock %}
